@@ -89,14 +89,23 @@
         }
         .portfolio-image {
             position: relative;
+            width: 100%;
+            height: auto;
             overflow: hidden;
             background: #eef0f3;
-            aspect-ratio: 16 / 10;
+        }
+        .portfolio-box,
+        .portfolio-info,
+        .panel,
+        .right-content {
+            min-width: 0;
+            max-width: 100%;
         }
         .portfolio-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100% !important;
+            height: auto !important;
+            max-width: 100% !important;
+            object-fit: contain !important;
             display: block;
             transition: transform 0.5s ease;
         }
@@ -204,6 +213,14 @@
             font-weight: 600;
             border: none;
             cursor: pointer;
+        }
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button,
+        .connect-btn,
+        .main-button {
+            max-width: 100%;
+            box-sizing: border-box;
         }
         .theme-toggle {
             position: fixed;
