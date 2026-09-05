@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ahmad Sheraz - Robotics & AI Student | Software Developer</title>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/media-query.css" rel="stylesheet">
+    <style>
+        body {
+            background: var(--primary-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+        }
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1200;
+        }
+        #box {
+            display: flex;
+            gap: 10px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--theme-color);
+        }
+        .menu-head {
+            margin-top: 110px;
+        }
+        .section-one {
+            background-color: #101820;
+            background-image: linear-gradient(90deg, rgba(7, 16, 24, 0.98) 0%, rgba(7, 16, 24, 0.84) 30%, rgba(7, 16, 24, 0.12) 66%, rgba(7, 16, 24, 0) 100%), url("assets/images/home/ahmad-sheraz-hero.jpeg");
+            background-size: 100% 100%, auto 100%;
+            background-position: center, calc(100% + 105px) center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+        }
+        .left-img.about-bg { background-image: linear-gradient(rgba(8, 22, 32, 0.32), rgba(8, 22, 32, 0.32)), url("assets/images/about/about-external-technology.jpg"); }
+        .left-img.services-bg { background-image: url("assets/images/about/about-Bg.png"); }
+        .left-img.work-bg { background-image: linear-gradient(rgba(8, 22, 32, 0.12), rgba(8, 22, 32, 0.12)), url("assets/images/portfolio/finwise-external-dashboard.jpg"); }
+        .left-img.resume-bg { background-image: url("assets/images/resume/resume-bg.png"); }
+        .left-img.contact-bg { background-image: linear-gradient(rgba(8, 22, 32, 0.18), rgba(8, 22, 32, 0.18)), url("assets/images/contact/contact-external-workspace.jpg"); }
+        .portfolio-box img,
+        .feature-box-01 img,
+        .contact-box-main img,
+        .resume-box img {
+            max-width: 100%;
+        }
+        .feature-box-01,
+        .portfolio-box,
+        .resume-box,
+        .contact-box-main {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .portfolio-box {
+            overflow: hidden;
+            border: 1px solid var(--border-colors);
+            border-radius: 16px;
+            background: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .portfolio-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.14);
+        }
+        .portfolio-image {
+            position: relative;
+            overflow: hidden;
+            background: #eef0f3;
+            aspect-ratio: 16 / 10;
+        }
+        .portfolio-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .portfolio-box:hover img {
+            transform: scale(1.04);
+        }
+        .portfolio-box-link {
+            display: flex;
+            color: inherit;
+            text-decoration: none;
+        }
+        .portfolio-box-link .portfolio-box {
+            width: 100%;
+        }
+        .portfolio-type {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(17, 24, 39, 0.85);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .portfolio-info {
+            padding: 20px 20px 22px;
+            flex: 1;
+        }
+        .portfolio-info h5 {
+            color: var(--text-color);
+            font-size: 22px;
+            line-height: 1.25;
+            margin-bottom: 9px;
+        }
+        .portfolio-info span {
+            display: block;
+            color: var(--sub-text);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 16px;
+        }
+        .portfolio-tags span {
+            display: inline-flex;
+            padding: 5px 9px;
+            border: 1px solid var(--border-colors);
+            border-radius: 999px;
+            color: var(--sub-text);
+            font-size: 12px;
+            line-height: 1;
+        }
+        .helpstext {
+            margin-top: 10px;
+        }
+        .section-one .connect-btn,
+        .m-btn {
+            margin-top: 20px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .main-box-contact {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .contact-box-main {
+            min-width: 0;
+            gap: 12px;
+            overflow: hidden;
+        }
+        .contact-box-main > div:last-child {
+            min-width: 0;
+        }
+        .contact-email a {
+            display: block;
+            overflow-wrap: anywhere;
+            font-size: clamp(12px, 1.2vw, 17px);
+            line-height: 1.45;
+        }
+        .contact-form {
+            max-width: 100%;
+        }
+        .contact-form button,
+        .connect-btn,
+        .main-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 999px;
+            background: var(--theme-color);
+            color: white;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        .theme-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--theme-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            z-index: 50;
+        }
+        .theme-toggle .icon {
+            width: 24px;
+            height: 24px;
+        }
+        .theme-toggle .icon.hidden { display: none; }
+        @media (max-width: 991px) {
+            .horizontal-wrapper { left: 0; width: 100%; }
+            .panel { width: 100%; }
+            .right-content,
+            .left-img,
+            .section-one { width: 100% !important; }
+            .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 560px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-image { aspect-ratio: 16 / 10; }
+            .main-box-contact { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 991px) {
+            .section-one {
+                background-size: 100% 100%, auto 100%;
+                background-position: center, calc(100% + 40px) center;
+            }
+        }
+    </style>
+</head>
+<body class="header-sticky">
+    <div id="loading" class="page-loader">
+        <div id="box"><span>A</span><span>H</span><span>M</span><span>A</span><span>D</span></div>
+    </div>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle theme" onclick="myFunction()">
+        <svg id="sunIcon" class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.75V4.5M12 19.5V21.25M4.93 4.93L6.05 6.05M17.95 17.95L19.07 19.07M2.75 12H4.5M19.5 12H21.25M4.93 19.07L6.05 17.95M17.95 6.05L19.07 4.93M12 7.5C9.51 7.5 7.5 9.51 7.5 12C7.5 14.49 9.51 16.5 12 16.5C14.49 16.5 16.5 14.49 16.5 12C16.5 9.51 14.49 7.5 12 7.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg id="moonIcon" class="icon hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.8A8.96 8.96 0 0 1 11.2 3a9 9 0 1 0 9.8 9.8Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="menu-overlay"></div>
+    <div class="hamburger" aria-label="menu"><span></span><span></span><span></span></div>
+
+    <aside class="sidebar-menu-main">
+        <div class="menu-head">
+            <div class="profile-img-main">
+                <img src="assets/images/home/ahmad-sheraz-profile.jpeg" alt="Ahmad Sheraz" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 4px solid var(--theme-color);">
+            </div>
+            <div class="profile-name">Ahmad Sheraz</div>
+            <div class="disignation">Robotics &amp; AI Student</div>
+
+            <ul class="menu-list-ul">
+                <li><a class="active" href="#home"><span>Home</span></a></li>
+                <li><a href="#about"><span>About</span></a></li>
+                <li><a href="#services"><span>Services</span></a></li>
+                <li><a href="#work"><span>Portfolio</span></a></li>
+                <li><a href="#resume"><span>Resume</span></a></li>
+                <li><a href="#contact"><span>Contact</span></a></li>
+            </ul>
+        </div>
+
+        <div class="social-media">
+            <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub"><img src="assets/images/svg/github-external.svg" alt="GitHub" style="width:20px; height:20px;"></a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src="assets/images/svg/linkedin-external.svg" alt="LinkedIn" style="width:20px; height:20px;"></a>
+            <a href="https://wa.me/923001234567" target="_blank" rel="noreferrer" aria-label="WhatsApp"><img src="assets/images/svg/whatsapp-external.svg" alt="WhatsApp" style="width:20px; height:20px;"></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><img src="assets/images/svg/instagram-external.svg" alt="Instagram" style="width:20px; height:20px;"></a>
+        </div>
+
+        <div class="copyrights">© 2026 Ahmad Sheraz</div>
+    </aside>
+
+    <div class="horizontal-wrapper" id="horizontalWrapper">
+        <section class="panel section-one" id="home">
+            <div class="sec-one-containe">
+                <div class="title-small">Hello, I&apos;m</div>
+                <div class="head-text">Ahmad Sheraz</div>
+                <div class="desgin-name">
+                    <div class="web-sub-text"><span id="type-it">Robotics Student</span></div>
+                </div>
+                <p class="sub-etx preci">
+                    Pursuing a Bachelor of Science in Robotics &amp; Artificial Intelligence at The University of Lahore. Specialized in Python, AI systems, digital logic design, and robotics simulations.
+                </p>
+                <a class="connect-btn" href="#contact">
+                    <span class="btn-text">Contact Me</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="panel" id="about">
+            <div class="left-img about-bg" style="width: 50%;"></div>
+            <div class="right-content">
+                <h3 class="sub-text-sec fade_up">About me</h3>
+                <p class="helpstext unifi fade_up">I am a robotics and AI student focused on building practical systems that connect software, hardware understanding, and intelligent automation.</p>
+                <div class="about-text" style="margin-top: 24px;">
+                    <h4 style="font-size: 32px; margin-bottom: 12px;">Ahmad Sheraz</h4>
+                    <p class="sub-etx">BS Robotics &amp; AI Student</p>
+                    <p style="margin-top: 18px;">I work with Python, AI application frameworks, digital logic concepts, and robotics simulations to create projects that are both technically strong and easy to deploy.</p>
+                    <div class="row" style="display:grid; grid-template-columns:repeat(2, minmax(180px, 1fr)); gap:16px; margin-top:24px;">
+                        <div class="font-14 border-left-2 border-theme my-2" style="padding-left:12px; border-left: 2px solid var(--theme-color);">
+                            <span class="text-muted d-block">University</span>
+                            <strong>The University of Lahore</strong>
+                        </div>
+                        <div class="font-14 border-left-2 border-theme my-2" style="padding-left:12px; border-left: 2px solid var(--theme-color);">
+                            <span class="text-muted d-block">Program</span>
+                            <strong>BS Robotics &amp; AI</strong>
+                        </div>
+                        <div class="font-14 border-left-2 border-theme my-2" style="padding-left:12px; border-left: 2px solid var(--theme-color);">
+                            <span class="text-muted d-block">Location</span>
+                            <strong>Lahore, Pakistan</strong>
+                        </div>
+                        <div class="font-14 border-left-2 border-theme my-2" style="padding-left:12px; border-left: 2px solid var(--theme-color);">
+                            <span class="text-muted d-block">Primary Skills</span>
+                            <strong>Python, Verilog</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="services">
+            <div class="left-img services-bg" style="width: 50%;"></div>
+            <div class="right-content">
+                <h3 class="sub-text-sec fade_up">Capabilities</h3>
+                <p class="helpstext unifi fade_up">Core technical competencies and project execution areas.</p>
+                <div class="row" style="display:grid; grid-template-columns:repeat(2, minmax(180px, 1fr)); gap:18px; margin-top:30px;">
+                    <div class="feature-box-01 bg-white" style="padding:20px; background:#fff; border-radius:12px;">
+                        <div class="icon"><i class="fas fa-robot"></i></div>
+                        <div class="feature-content"><h5>Robotics &amp; Kinematics</h5><p>Kinematic analysis, manipulator motion logic, and simulation design.</p></div>
+                    </div>
+                    <div class="feature-box-01 bg-white" style="padding:20px; background:#fff; border-radius:12px;">
+                        <div class="icon"><i class="fas fa-brain"></i></div>
+                        <div class="feature-content"><h5>AI App Development</h5><p>Interactive dashboards and retrieval systems using LangChain and Streamlit.</p></div>
+                    </div>
+                    <div class="feature-box-01 bg-white" style="padding:20px; background:#fff; border-radius:12px;">
+                        <div class="icon"><i class="fas fa-microchip"></i></div>
+                        <div class="feature-content"><h5>Digital Logic</h5><p>Verilog HDL design, gate-level implementation, and debugging workflows.</p></div>
+                    </div>
+                    <div class="feature-box-01 bg-white" style="padding:20px; background:#fff; border-radius:12px;">
+                        <div class="icon"><i class="fas fa-charging-station"></i></div>
+                        <div class="feature-content"><h5>Circuit Simulation</h5><p>Power regulation and NI Multisim-inspired analysis for embedded systems.</p></div>
+                    </div>
+                    <div class="feature-box-01 bg-white" style="padding:20px; background:#fff; border-radius:12px;">
+                        <div class="icon"><i class="fas fa-code"></i></div>
+                        <div class="feature-content"><h5>Git &amp; Deployment</h5><p>Codebase management, version control, and deployment on cloud platforms.</p></div>
+                    </div>
+                    <div class="feature-box-01 bg-white" style="padding:20px; background:#fff; border-radius:12px;">
+                        <div class="icon"><i class="fas fa-video"></i></div>
+                        <div class="feature-content"><h5>Tech Demos</h5><p>Application walkthroughs, screen recording, and technical communication.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="work">
+            <div class="left-img work-bg" style="width: 50%;"></div>
+            <div class="right-content">
+                <h3 class="sub-text-sec fade_up">Featured projects</h3>
+                <p class="helpstext unifi fade_up">Selected software applications and technical implementations.</p>
+                <div class="portfolio-grid">
+                    <a class="portfolio-box-link" href="https://finwiseai-ai.streamlit.app/" target="_blank" rel="noreferrer" aria-label="Open FinWise AI live demo">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/finwise-card-external.jpg" alt="FinWise AI finance documents">
+                            <span class="portfolio-type">AI product</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>FinWise AI</h5>
+                            <span>A conversational personal-finance assistant that turns financial questions into practical, understandable guidance.</span>
+                            <div class="portfolio-tags"><span>LangChain</span><span>Streamlit</span><span>Python</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://mediguide-clinical-aii.streamlit.app/" target="_blank" rel="noreferrer" aria-label="Open MedGuide AI live demo">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/medguide-healthcare-tech.jpg" alt="MedGuide AI healthcare technology">
+                            <span class="portfolio-type">Healthcare AI</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>MedGuide AI</h5>
+                            <span>An AI-assisted healthcare guide designed to make reliable medical information easier to find, understand, and use responsibly.</span>
+                            <div class="portfolio-tags"><span>AI assistant</span><span>Health UX</span><span>Python</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://helix-aii.streamlit.app/" target="_blank" rel="noreferrer" aria-label="Open Helix AI live demo">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/helix-ai-external.jpg" alt="Helix AI technical intelligence project">
+                            <span class="portfolio-type">AI systems</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>Helix AI</h5>
+                            <span>An intelligent systems project focused on connecting structured knowledge, technical reasoning, and practical AI workflows.</span>
+                            <div class="portfolio-tags"><span>Python</span><span>AI workflows</span><span>Research</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://supportpearlz-ai.streamlit.app/" target="_blank" rel="noreferrer" aria-label="Open SupportPearlz live demo">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/supportpearlz-external.jpg" alt="SupportPearlz support workspace">
+                            <span class="portfolio-type">Support platform</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>SupportPearlz</h5>
+                            <span>A support-focused product concept designed to organize customer conversations, workflows, and service operations.</span>
+                            <div class="portfolio-tags"><span>Support UX</span><span>Workflows</span><span>Web app</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://github.com/Ahmiii-18/see-and-describe" target="_blank" rel="noreferrer" aria-label="Open See-and-Describe source repository">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/see-and-describe-external.jpg" alt="See-and-Describe computer vision project">
+                            <span class="portfolio-type">Computer vision</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>See-and-Describe</h5>
+                            <span>A vision-focused AI project that interprets visual scenes and turns them into clear, natural-language descriptions.</span>
+                            <div class="portfolio-tags"><span>Computer vision</span><span>Python</span><span>AI</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://ahmiii-18.github.io/ramdan-countdown/" target="_blank" rel="noreferrer" aria-label="Open Ramadan Iftar-Sahoor Countdown live demo">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/ramdana-external.jpg" alt="Ramadan Iftar-Sahoor Countdown">
+                            <span class="portfolio-type">Live web app</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>Ramadan Iftar-Sahoor Countdown</h5>
+                            <span>A live countdown experience for Ramadan prayer timings, helping users track upcoming Iftar and Sahoor moments.</span>
+                            <div class="portfolio-tags"><span>Live demo</span><span>Countdown</span><span>Frontend</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://custom-rag-agent.streamlit.app/" target="_blank" rel="noreferrer" aria-label="Open Custom RAG Agent live demo">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/helix-ai-external.jpg" alt="Custom RAG Agent">
+                            <span class="portfolio-type">RAG agent</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>Custom RAG Agent</h5>
+                            <span>A retrieval-augmented assistant for asking questions across focused knowledge sources with grounded responses.</span>
+                            <div class="portfolio-tags"><span>RAG</span><span>LangChain</span><span>Streamlit</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://marketmindaii.streamlit.app/" target="_blank" rel="noreferrer" aria-label="Open MarketMind AI live demo">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/finwise-external-dashboard.jpg" alt="MarketMind AI market analytics">
+                            <span class="portfolio-type">Market intelligence</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>MarketMind AI</h5>
+                            <span>An AI market-analysis workspace for exploring signals, metrics, and decision-support insights.</span>
+                            <div class="portfolio-tags"><span>Market AI</span><span>Analytics</span><span>Streamlit</span></div>
+                        </div>
+                    </div>
+                    </a>
+                    <a class="portfolio-box-link" href="https://github.com/Ahmiii-18/my-streamlit-app" target="_blank" rel="noreferrer" aria-label="Open My Streamlit App source repository">
+                    <div class="portfolio-box">
+                        <div class="portfolio-image">
+                            <img src="assets/images/portfolio/portfolio-bg.png" alt="My Streamlit App dashboard">
+                            <span class="portfolio-type">Streamlit app</span>
+                        </div>
+                        <div class="portfolio-info">
+                            <h5>My Streamlit App</h5>
+                            <span>A Streamlit application foundation for building interactive Python-powered tools and experiments.</span>
+                            <div class="portfolio-tags"><span>Streamlit</span><span>Python</span><span>Prototype</span></div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="resume">
+            <div class="left-img resume-bg" style="width: 50%;"></div>
+            <div class="right-content">
+                <h3 class="sub-text-sec fade_up">Academic history</h3>
+                <p class="helpstext unifi fade_up">Education, technical direction, and learning progression.</p>
+                <div class="resume-box" style="margin-top:28px; padding:24px; border:1px solid #eee; border-radius:16px; background:#fff;">
+                    <ul>
+                        <li>
+                            <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                            <span class="time">Currently Enrolled</span>
+                            <h5>BS in Robotics and Artificial Intelligence</h5>
+                            <p class="institute">The University of Lahore</p>
+                            <p>Focused on robotics kinematics, digital logic design, embedded simulation, and intelligent software systems.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" id="contact">
+            <div class="left-img contact-bg" style="width: 50%;"></div>
+            <div class="right-content">
+                <h3 class="sub-text-sec fade_up">Get in touch</h3>
+                <p class="helpstext unifi fade_up">For collaborations, project discussions, and technical inquiries.</p>
+                <div class="main-box-contact" style="margin-top:30px;">
+                    <div class="contact-box-main zoom_in" style="padding:20px; border:1px solid #eee; border-radius:12px; background:#fff;">
+                        <div class="mobile-icon-main"><img src="assets/images/svg/gmail-external.svg" alt="Gmail" style="width:40px;"></div>
+                        <div><p class="contact-email-text">EMAIL</p><p class="contact-email"><a href="mailto:ahmad.sheraz@example.com">ahmad.sheraz@example.com</a></p></div>
+                    </div>
+                    <div class="contact-box-main zoom_in" style="padding:20px; border:1px solid #eee; border-radius:12px; background:#fff;">
+                        <div class="mobile-icon-main"><img src="assets/images/svg/whatsapp-external.svg" alt="WhatsApp" style="width:40px;"></div>
+                        <div><p class="contact-email-text">PHONE</p><p class="contact-email"><a href="tel:+923001234567">+92 300 1234567</a></p></div>
+                    </div>
+                </div>
+
+                <div class="contact-form" style="margin-top:30px;">
+                    <form id="contact-form">
+                        <input name="Name" id="name" placeholder="Name *" type="text">
+                        <input name="Email" id="email" placeholder="Email *" type="email">
+                        <input name="Subject" id="subject" placeholder="Subject *" type="text">
+                        <textarea name="message" id="message" placeholder="Your message *" rows="5"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="assets/javascript/jquery.js"></script>
+    <script src="assets/javascript/script.js"></script>
+    <script>
+        (function () {
+            const typeText = document.getElementById('type-it');
+            if (!typeText) return;
+            const words = ['Robotics & AI Student', 'AI Developer', 'Python Programmer'];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let deleting = false;
+            function tick() {
+                const current = words[wordIndex % words.length];
+                if (!deleting) {
+                    charIndex++;
+                    typeText.textContent = current.slice(0, charIndex);
+                    if (charIndex >= current.length) {
+                        deleting = true;
+                        setTimeout(tick, 900);
+                        return;
+                    }
+                } else {
+                    charIndex--;
+                    typeText.textContent = current.slice(0, charIndex);
+                    if (charIndex <= 0) {
+                        deleting = false;
+                        wordIndex++;
+                    }
+                }
+                setTimeout(tick, deleting ? 45 : 110);
+            }
+            tick();
+        })();
+    </script>
+</body>
+</html>
