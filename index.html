@@ -7,6 +7,7 @@
     <title>Ahmad Sheraz - Robotics & AI Student | Software Developer</title>
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/media-query.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -244,33 +245,54 @@
         }
         .theme-toggle .icon.hidden { display: none; }
 
-        /* REPLACED 991px MEDIA QUERY HERE */
+        /* Fix: cards with a HARDCODED white background keep dark, readable text in BOTH themes.
+           Note: .portfolio-info is intentionally excluded — its card uses var(--primary-color),
+           which is already theme-aware, so its text correctly uses var(--text-color)/var(--sub-text). */
+        .resume-box,
+        .feature-box-01,
+        .contact-box-main {
+            color: #1a1a1a;
+        }
+        .resume-box h4,
+        .resume-box h5,
+        .resume-box p,
+        .resume-box span,
+        .resume-box .institute,
+        .resume-box .time,
+        .feature-box-01 h5,
+        .feature-box-01 p,
+        .contact-box-main p,
+        .contact-box-main a,
+        .contact-box-main .contact-email-text {
+            color: #1a1a1a !important;
+        }
+
+        /* Tablet / mobile layout */
         @media (max-width: 991px) {
-            .horizontal-wrapper { 
-                left: 0; 
-                width: 100%; 
+            .horizontal-wrapper {
+                left: 0;
+                width: 100%;
             }
-            .panel { 
-                width: 100%; 
+            .panel {
+                width: 100%;
                 flex-direction: column;
                 height: auto !important;
             }
             .right-content,
             .left-img,
-            .section-one { 
-                width: 100% !important; 
+            .section-one {
+                width: 100% !important;
             }
+            /* Fix: decorative side image panel produced a broken/blurry crop on mobile — hide it instead */
             .left-img {
-                min-height: 300px;
-                background-size: cover;
-                background-position: center;
+                display: none;
             }
             .section-one {
                 background-size: cover;
                 background-position: center;
             }
-            .portfolio-grid { 
-                grid-template-columns: repeat(2, minmax(0, 1fr)); 
+            .portfolio-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
@@ -280,9 +302,6 @@
             .main-box-contact { grid-template-columns: 1fr; }
             .menu-head { margin-top: 60px; }
             #box { font-size: 22px; letter-spacing: 1px; }
-        }
-        @media (max-width: 991px) {
-            .left-img { display: none; }
         }
     </style>
 </head>
