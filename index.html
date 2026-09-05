@@ -8,6 +8,15 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/media-query.css" rel="stylesheet">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             background: var(--primary-color);
             color: var(--text-color);
@@ -217,24 +226,43 @@
             height: 24px;
         }
         .theme-toggle .icon.hidden { display: none; }
+
+        /* REPLACED 991px MEDIA QUERY HERE */
         @media (max-width: 991px) {
-            .horizontal-wrapper { left: 0; width: 100%; }
-            .panel { width: 100%; }
+            .horizontal-wrapper { 
+                left: 0; 
+                width: 100%; 
+            }
+            .panel { 
+                width: 100%; 
+                flex-direction: column;
+                height: auto !important;
+            }
             .right-content,
             .left-img,
-            .section-one { width: 100% !important; }
-            .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .section-one { 
+                width: 100% !important; 
+            }
+            .left-img {
+                min-height: 300px;
+                background-size: cover;
+                background-position: center;
+            }
+            .section-one {
+                background-size: cover;
+                background-position: center;
+            }
+            .portfolio-grid { 
+                grid-template-columns: repeat(2, minmax(0, 1fr)); 
+            }
         }
+
         @media (max-width: 560px) {
             .portfolio-grid { grid-template-columns: 1fr; }
             .portfolio-image { aspect-ratio: 16 / 10; }
             .main-box-contact { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 991px) {
-            .section-one {
-                background-size: 100% 100%, auto 100%;
-                background-position: center, calc(100% + 40px) center;
-            }
+            .menu-head { margin-top: 60px; }
+            #box { font-size: 22px; letter-spacing: 1px; }
         }
     </style>
 </head>
