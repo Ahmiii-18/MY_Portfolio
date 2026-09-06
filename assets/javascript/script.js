@@ -1,4 +1,3 @@
-
 /*--------------------------- Page Loader --------------------------------*/
 $(function () {
     setTimeout(() => {
@@ -352,3 +351,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }, observerOptions);
     observer.observe(progressSection);
 });
+
+/*------------------------------------- Contact Form Handler & Error Routing -------------------------------------*/
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contact-form");
+    if (!contactForm) return;
+
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !subject || !message) {
+            return; // Silently stops if fields are empty without popping dialog boxes
+        }
+
+        const formData = {
+            to_email: "ahmadshiraz912@gmail.com",
+            from_name: name,
+            from_email: email,
+            subject: subject,
+            message: message
+        };
+
+        // If using EmailJS or another backend service, configure it here.
+        // On error or direct fallback routing:
+        try {
+            throw new Error("Direct routing fallback");
+        } catch (error) {
+            handleFormError(error, formData);
+        }
+    });
+});
+
+function handleFormError(error, formData) {
+    console.error("Form submission error:", error);
+
+    // Automatically routes directly to ahmadshiraz912@gmail.com with pre-filled content (no alert popups)
+    const mailtoUrl = `mailto:ahmadshiraz912@gmail.com?subject=${encodeURIComponent(
+        formData.subject
+    )}&body=${encodeURIComponent(
+        `Name: ${formData.from_name}\nEmail: ${formData.from_email}\n\nMessage:\n${formData.message}`
+    )}`;
+
+    window.location.href = mailtoUrl;
+}
