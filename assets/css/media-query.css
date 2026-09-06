@@ -397,9 +397,13 @@
 }
 @media (max-width: 575px) {
     .section-one {
-        padding: 80px 12px 40px 12px;
-        background: #141C27;
-    }
+    padding: 80px 12px 40px 12px;
+    background-color: #141C27;
+    background-image: url('../images/home/hero-img1.jpg');
+    background-size: auto 160%;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
     .profile-img2-main {
         display: block;
     }
